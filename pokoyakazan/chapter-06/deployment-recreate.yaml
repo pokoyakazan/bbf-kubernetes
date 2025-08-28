@@ -5,17 +5,23 @@ metadata:
   labels:
     app: nginx
 spec:
-  replicas: 3 # Podを3つ作成
+  replicas: 10
+  strategy:
+    type: Recreate
   selector:
     matchLabels:
-      app: nginx # templateとlabelが一致する必要がある
+      app: nginx
   template:
     metadata:
       labels:
         app: nginx
     spec:
       containers:
-      - name: nginx
+      - name: nginwx
         image: nginx:1.25.3
         ports:
         - containerPort: 80
+        lifecycle:
+          preStop:
+            exec:
+              command: ["/bin/sh", "-c", "sleep 10"]
