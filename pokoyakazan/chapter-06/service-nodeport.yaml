@@ -8,6 +8,6 @@ spec:
     app: hello-server # サービスを利用したいPodのラベルと一致させる
   ports:
     - protocol: TCP
-      port: 8080
-      targetPort: 8081 # 利用するコンテナが開放しているPortを指定する
+      port: 8081 # serviceが受け付けるPort
+      targetPort: 8080 # 利用するコンテナが開放しているPort
       nodePort: 30599
